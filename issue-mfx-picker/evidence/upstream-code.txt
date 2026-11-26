@@ -1,0 +1,172 @@
+# host: sdfiana025
+# date: 2026-11-26T07:22:32Z
+# commit: mfx d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9 (pcdshub/mfx origin/run27 head) vs 4beeab1ea557460e1db858ce095f39a4e3f8afca (twin clone)
+# cmd: collect_picker.sh /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/main/sim-issues/agents/h1/mfx-picker/evidence (upstream check)
+
+$ git ls-remote https://github.com/pcdshub/mfx HEAD refs/heads/master refs/heads/run27 refs/heads/1020945-undulator-1026
+d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9	HEAD
+4beeab1ea557460e1db858ce095f39a4e3f8afca	refs/heads/1020945-undulator-1026
+d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9	refs/heads/master
+d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9	refs/heads/run27
+$ git symbolic-ref --short refs/remotes/origin/HEAD    # default branch
+origin/run27
+$ git log -1 --format='%H %cI %s' origin/HEAD
+d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9 2026-09-29T11:29:13-07:00 Merge pull request #310 from pcdshub/run26
+$ git diff 4beeab1ea557460e1db858ce095f39a4e3f8afca d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9 -- mfx/attenuator_scan.py mfx/autorun.py mfx/db.py | wc -l
+0
+
+$ git show d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9:mfx/attenuator_scan.py | cat -n | sed -n '19,30p;86,101p;205,320p'
+    19	        inspire: bool = False,
+    20	        duration: float = 10.0,
+    21	        record: bool = False,
+    22	        use_daq: bool = True,
+    23	        runs: int = 5,
+    24	        daq_delay: int = 5,
+    25	        picker: str = None,
+    26	        daq_num: int = 2):
+    27	    """
+    28	    Execute automated attenuator transmission scan.
+    29	
+    30	    Scans through a list of attenuator transmission values, recording
+    86	    - Automatic thickness calculation
+    87	    - Energy-dependent attenuation
+    88	
+    89	    Scan Workflow:
+    90	    1. Configure pulse picker if requested
+    91	    2. Get starting run number
+    92	    3. For each run:
+    93	       a. Setup DAQ if recording
+    94	       b. For each transmission:
+    95	          - Set attenuator
+    96	          - Wait for settling
+    97	          - Acquire data for specified duration
+    98	       c. Post results to elog
+    99	       d. Wait daq_delay before next run
+   100	    4. Close pulse picker
+   101	    5. Report completion
+   205	    logger.info(f"Transmissions: {transmissions}")
+   206	    logger.info(f"Duration per point: {duration}s")
+   207	    logger.info(f"Number of runs: {runs}")
+   208	    logger.info(f"Recording: {record}")
+   209	    logger.info(f"DAQ: {daq_num}, Use DAQ: {use_daq}")
+   210	    logger.info("="*60 + "\n")
+   211	
+   212	    # Operate pulse picker
+   213	    if picker == 'open':
+   214	        logger.info("Opening pulse picker")
+   215	        mfx_pulsepicker.open()
+   216	    elif picker == 'flip':
+   217	        logger.info("Setting pulse picker to flip-flop mode")
+   218	        mfx_pulsepicker.flipflop()
+   219	
+   220	    # Main scan loop
+   221	    for run_idx in range(runs):
+   222	        logger.info(f"\n{'='*60}")
+   223	        logger.info(f"RUN {run_idx + 1}/{runs}")
+   224	        logger.info(f"{'='*60}")
+   225	
+   226	        # Determine station based on DAQ version
+   227	        station = 1 if daq_num == 1 else 0
+   228	        run_number = get_run(station=station) + 1
+   229	
+   230	        logger.info(
+   231	            f"Run Number {run_number} Running {sample}..."
+   232	            f"...{quote()['quote']}"
+   233	        )
+   234	
+   235	        # Setup DAQ if using it
+   236	        if use_daq:
+   237	            if daq_num == 2:
+   238	                # LCLS-II DAQ setup
+   239	                logger.info("Configuring LCLS-II DAQ...")
+   240	                if not _setup_daq_lcls2(record):
+   241	                    logger.error('Failed to setup LCLS-II DAQ')
+   242	                    break
+   243	            elif daq_num == 1:
+   244	                # LCLS-I DAQ setup
+   245	                logger.info("Configuring LCLS-I DAQ...")
+   246	                daq.configure(record=record)
+   247	                sleep(3)
+   248	
+   249	        # Scan through transmissions
+   250	        logger.info(
+   251	            f"\nScanning through {len(transmissions)} "
+   252	            f"transmission values..."
+   253	        )
+   254	        for idx, transmission in enumerate(transmissions):
+   255	            logger.info(
+   256	                f"  Step {idx + 1}/{len(transmissions)}: "
+   257	                f"Setting transmission to {transmission*100:.1f}%"
+   258	            )
+   259	
+   260	            # Set attenuator and wait for motion
+   261	            att(transmission, wait=True)
+   262	            logger.info(f"    Attenuator reached {transmission}")
+   263	
+   264	            # Acquire data
+   265	            if use_daq and daq_num == 1:
+   266	                sleep(3)
+   267	                logger.info(
+   268	                    f"    Recording for {duration}s with DAQ1..."
+   269	                )
+   270	                daq.begin(
+   271	                    duration=duration,
+   272	                    record=record,
+   273	                    wait=True,
+   274	                    use_l3t=False
+   275	                )
+   276	            else:
+   277	                logger.info(
+   278	                    f"    Waiting {duration}s at this transmission..."
+   279	                )
+   280	                sleep(duration)
+   281	
+   282	        # Cleanup DAQ
+   283	        if use_daq:
+   284	            if daq_num == 2:
+   285	                logger.info("Cleaning up LCLS-II DAQ...")
+   286	                _cleanup_daq_lcls2()
+   287	            elif daq_num == 1:
+   288	                logger.info("Ending DAQ1 run...")
+   289	                daq.end_run()
+   290	                daq.disconnect()
+   291	
+   292	        # Post to elog
+   293	        if record:
+   294	            sample_transmissions = (
+   295	                f"{sample}\nTransmissions: {transmissions}"
+   296	            )
+   297	            logger.info("Posting run to elog...")
+   298	            post(
+   299	                sample=sample,
+   300	                tag=tag,
+   301	                run_number=run_number,
+   302	                post=record,
+   303	                inspire=inspire,
+   304	                daq_num=daq_num,
+   305	                add_note=sample_transmissions
+   306	            )
+   307	
+   308	        # Close pulse picker after run
+   309	        mfx_pulsepicker.close()
+   310	
+   311	        # Wait before next run
+   312	        if run_idx < runs - 1:
+   313	            logger.info(
+   314	                f"\nWaiting {daq_delay}s before next run..."
+   315	            )
+   316	            sleep(daq_delay)
+   317	
+   318	    # Final summary
+   319	    logger.info("\n" + "="*60)
+   320	    logger.info("ATTENUATOR SCAN COMPLETE")
+
+$ git show d73bb56a13c1f8d6fa4e45b707c5050dc4e903f9:mfx/autorun.py | cat -n | grep -E 'close_picker|pulsepicker'
+   378	    from mfx.db import daq, mfx_pulsepicker
+   417	        mfx_pulsepicker.open()
+   420	        mfx_pulsepicker.flipflop()
+   442	        mfx_pulsepicker.close()
+   567	            from mfx.db import mfx_pulsepicker
+   568	            mfx_pulsepicker.close()
+   613	    from mfx.db import daq, mfx_pulsepicker
+   699	            mfx_pulsepicker.close()

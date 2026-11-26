@@ -1,0 +1,35 @@
+# host: sdfrome091
+# date: 2026-11-26T03:04:48Z
+# commit: lcls2 5eb773c84b9d8bf804c87fb6d629646cf5631cd4 sim-hutch 4d7df7067b5c9231bc79862a0aa5ee6391510496 mfx 387a4c14c24752c39ed4c453de2b59ac655beb95
+# cmd: macro_ci.sh  --mfx /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/mfx-fix --label fixed 
+# mfx_repo: /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/mfx-fix  dirty: 0 files
+# driver: login sdfiana025, job 47153577
+# run: /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/runs/4d7df7067b5c-20261126T030449Z-47153577
+attscan-basic: PASS session                launcher rc=0, traceback False
+attscan-basic: PASS run-count              expected 1 recorded runs, session started [1], files for [1]
+attscan-basic: PASS events                 L1Accepts per run {1: 2891}, need >= 2160 each
+attscan-basic: PASS plateaus               events at each requested transmission [1.0, 0.5, 0.25, 0.1], in order, per run {1: [720, 720, 720, 600]} (need >= 120 each)
+attscan-basic: PASS picker-closed-at-end   pulse picker blade at the end: Closed
+attscan-basic: CASE attscan-basic PASS
+attscan-2runs-picker: PASS session                launcher rc=0, traceback False
+attscan-2runs-picker: PASS run-count              expected 2 recorded runs, session started [2, 3], files for [2, 3]
+attscan-2runs-picker: PASS events                 L1Accepts per run {2: 1167, 3: 1163}, need >= 864 each
+attscan-2runs-picker: PASS plateaus               events at each requested transmission [1.0, 0.1], in order, per run {2: [720, 289], 3: [720, 274]} (need >= 120 each)
+attscan-2runs-picker: PASS beam-on                picker='open': events with the pulse picker not Open after the first 1 s of each run {2: 0, 3: 0} (need 0; events before the blade first read Open: {2: 79, 3: 0})
+attscan-2runs-picker: PASS picker-closed-at-end   pulse picker blade at the end: Closed
+attscan-2runs-picker: CASE attscan-2runs-picker PASS
+autorun-2runs-picker: PASS session                launcher rc=0, traceback False
+autorun-2runs-picker: PASS run-count              expected 2 recorded runs, session started [4, 5], files for [4, 5]
+autorun-2runs-picker: PASS events                 L1Accepts per run {4: 963, 5: 963}, need >= 864 each
+autorun-2runs-picker: PASS beam-on                picker='open': events with the pulse picker not Open after the first 1 s of each run {4: 0, 5: 0} (need 0; events before the blade first read Open: {4: 52, 5: 0})
+autorun-2runs-picker: PASS picker-closed-at-end   pulse picker blade at the end: Closed
+autorun-2runs-picker: CASE autorun-2runs-picker PASS
+attscan-default-picker-preopened: PASS session                launcher rc=0, traceback False
+attscan-default-picker-preopened: PASS run-count              expected 2 recorded runs, session started [6, 7], files for [6, 7]
+attscan-default-picker-preopened: PASS events                 L1Accepts per run {6: 1172, 7: 1153}, need >= 864 each
+attscan-default-picker-preopened: PASS plateaus               events at each requested transmission [1.0, 0.1], in order, per run {6: [720, 372], 7: [720, 348]} (need >= 120 each)
+attscan-default-picker-preopened: PASS beam-on                picker='open': events with the pulse picker not Open after the first 1 s of each run {6: 0, 7: 0} (need 0; events before the blade first read Open: {6: 0, 7: 0})
+attscan-default-picker-preopened: PASS picker-closed-at-end   pulse picker blade at the end: Closed
+attscan-default-picker-preopened: CASE attscan-default-picker-preopened PASS
+# down: rc=0
+RESULT PASS (fixed)

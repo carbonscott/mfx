@@ -1,0 +1,16 @@
+# host: sdfiana025
+# date: 2026-11-26T07:22:32Z
+# commit: mfx 387a4c1 (= 4beeab1ea557 + x2 fix-picker.patch) sim-hutch 4d7df7067b5c lcls2 5eb773c84b9d (run on sdfrome091)
+# cmd: collect_picker.sh /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/main/sim-issues/agents/h1/mfx-picker/evidence (verbatim copy of /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/fixed-20261126T030448Z/attscan-default-picker-preopened/camonitor.txt)
+# source: /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/fixed-20261126T030448Z/attscan-default-picker-preopened/camonitor.txt
+# (the lines below are the file as the run wrote it)
+
+MFX:ATT:COM:R_CUR              2026-11-26 03:11:14.601905(2026-11-26 03:11:14.782920) 0.121119  
+MFX:DIA:MMS:07:READ_DF         2026-11-26 03:11:13.942126(2026-11-26 03:11:14.783032) + Closed  
+osiLocalAddr(): only loopback found
+MFX:DIA:MMS:07:READ_DF         2026-11-26 03:11:55.942127(2026-11-26 03:11:55.942277) Open  
+MFX:ATT:COM:R_CUR              2026-11-26 03:11:58.601911(2026-11-26 03:11:58.602047) 1  
+MFX:ATT:COM:R_CUR              2026-11-26 03:12:04.601949(2026-11-26 03:12:04.602070) 0.121119  
+MFX:ATT:COM:R_CUR              2026-11-26 03:12:12.602051(2026-11-26 03:12:12.602114) 1  
+MFX:ATT:COM:R_CUR              2026-11-26 03:12:18.601937(2026-11-26 03:12:18.602086) 0.121119  
+MFX:DIA:MMS:07:READ_DF         2026-11-26 03:12:23.942131(2026-11-26 03:12:23.942252) + Closed  

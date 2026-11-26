@@ -1,0 +1,78 @@
+# host: sdfiana025
+# date: 2026-11-26T07:22:32Z
+# commit: mfx 4beeab1ea557 sim-hutch 4d7df7067b5c lcls2 5eb773c84b9d (run on sdfrome091, Slurm job 47153577)
+# cmd: collect_picker.sh /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/main/sim-issues/agents/h1/mfx-picker/evidence (verbatim copy of /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened/session.out)
+# source: /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened/session.out
+# (the lines below are the file as the run wrote it)
+
+INFO     attenuator_scan - 
+============================================================
+INFO     attenuator_scan - ATTENUATOR SCAN CONFIGURATION
+INFO     attenuator_scan - ============================================================
+INFO     attenuator_scan - Sample: ci
+INFO     attenuator_scan - Transmissions: [1.0, 0.1]
+INFO     attenuator_scan - Duration per point: 4s
+INFO     attenuator_scan - Number of runs: 2
+INFO     attenuator_scan - Recording: True
+INFO     attenuator_scan - DAQ: 2, Use DAQ: True
+INFO     attenuator_scan - ============================================================
+
+INFO     attenuator_scan - 
+============================================================
+INFO     attenuator_scan - RUN 1/2
+INFO     attenuator_scan - ============================================================
+WARNING  quote - Quote file not found: /cds/home/d/djr/scripts/quotes.json
+INFO     attenuator_scan - Run Number 6 Running ci......No quote available
+INFO     attenuator_scan - Configuring LCLS-II DAQ...
+INFO     attenuator_scan - 
+Scanning through 2 transmission values...
+INFO     attenuator_scan -   Step 1/2: Setting transmission to 100.0%
+INFO     _log_move - Moving mfx_attenuator from 0.12111866261102375 to 1.0
+INFO     _log_move_end - mfx_attenuator reached position 0.12111866261102375
+INFO     attenuator_scan -     Attenuator reached 1.0
+INFO     attenuator_scan -     Waiting 4s at this transmission...
+INFO     attenuator_scan -   Step 2/2: Setting transmission to 10.0%
+INFO     _log_move - Moving mfx_attenuator from 1.0 to 0.1
+INFO     _log_move_end - mfx_attenuator reached position 1.0
+INFO     attenuator_scan -     Attenuator reached 0.1
+INFO     attenuator_scan -     Waiting 4s at this transmission...
+INFO     attenuator_scan - Cleaning up LCLS-II DAQ...
+INFO     attenuator_scan - Posting run to elog...
+INFO     post - Posting to elog with tag 'ci'
+INFO     post - Posting to experiment logbook ...
+INFO     post - New message ID: simhutch-elog-1
+INFO     attenuator_scan - 
+Waiting 2s before next run...
+INFO     attenuator_scan - 
+============================================================
+INFO     attenuator_scan - RUN 2/2
+INFO     attenuator_scan - ============================================================
+WARNING  quote - Quote file not found: /cds/home/d/djr/scripts/quotes.json
+INFO     attenuator_scan - Run Number 7 Running ci......No quote available
+INFO     attenuator_scan - Configuring LCLS-II DAQ...
+INFO     attenuator_scan - 
+Scanning through 2 transmission values...
+INFO     attenuator_scan -   Step 1/2: Setting transmission to 100.0%
+INFO     _log_move - Moving mfx_attenuator from 0.12111866261102375 to 1.0
+INFO     _log_move_end - mfx_attenuator reached position 0.12111866261102375
+INFO     attenuator_scan -     Attenuator reached 1.0
+INFO     attenuator_scan -     Waiting 4s at this transmission...
+INFO     attenuator_scan -   Step 2/2: Setting transmission to 10.0%
+INFO     _log_move - Moving mfx_attenuator from 1.0 to 0.1
+INFO     _log_move_end - mfx_attenuator reached position 1.0
+INFO     attenuator_scan -     Attenuator reached 0.1
+INFO     attenuator_scan -     Waiting 4s at this transmission...
+INFO     attenuator_scan - Cleaning up LCLS-II DAQ...
+INFO     attenuator_scan - Posting run to elog...
+INFO     post - Posting to elog with tag 'ci'
+INFO     post - Posting to experiment logbook ...
+INFO     post - New message ID: simhutch-elog-2
+INFO     attenuator_scan - 
+============================================================
+INFO     attenuator_scan - ATTENUATOR SCAN COMPLETE
+INFO     attenuator_scan - ============================================================
+INFO     attenuator_scan - Total runs completed: 2
+INFO     attenuator_scan - Transmissions scanned: [1.0, 0.1]
+INFO     attenuator_scan - ============================================================
+
+

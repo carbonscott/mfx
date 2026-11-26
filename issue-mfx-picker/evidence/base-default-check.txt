@@ -1,0 +1,15 @@
+# host: sdfiana025
+# date: 2026-11-26T07:22:32Z
+# commit: mfx 4beeab1ea557 sim-hutch 4d7df7067b5c lcls2 5eb773c84b9d (run on sdfrome091, Slurm job 47153577)
+# cmd: collect_picker.sh /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/main/sim-issues/agents/h1/mfx-picker/evidence (verbatim copy of /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened.check.out)
+# source: /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened.check.out
+# (the lines below are the file as the run wrote it)
+
+PASS session                launcher rc=0, traceback False
+PASS run-count              expected 2 recorded runs, session started [6, 7], files for [6, 7]
+PASS events                 L1Accepts per run {6: 1169, 7: 1153}, need >= 864 each
+PASS plateaus               events at each requested transmission [1.0, 0.1], in order, per run {6: [720, 309], 7: [720, 285]} (need >= 120 each)
+FAIL beam-on                picker='open': events with the pulse picker not Open after the first 1 s of each run {6: 0, 7: 1032} (need 0; events before the blade first read Open: {6: 0, 7: 1153})
+PASS picker-closed-at-end   pulse picker blade at the end: Closed
+CASE attscan-default-picker-preopened FAIL
+srun: error: sdfrome091: task 0: Exited with exit code 1

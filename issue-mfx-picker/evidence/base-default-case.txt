@@ -1,0 +1,15 @@
+# host: sdfiana025
+# date: 2026-11-26T07:22:32Z
+# commit: mfx 4beeab1ea557 sim-hutch 4d7df7067b5c lcls2 5eb773c84b9d (run on sdfrome091, Slurm job 47153577)
+# cmd: collect_picker.sh /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/main/sim-issues/agents/h1/mfx-picker/evidence (verbatim copy of /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened/case.txt)
+# source: /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened/case.txt
+# (the lines below are the file as the run wrote it)
+
+# host: sdfrome091
+# date: 2026-11-26T03:03:06Z
+# commit: sim-hutch 4d7df7067b5c9231bc79862a0aa5ee6391510496 mfx 4beeab1ea557460e1db858ce095f39a4e3f8afca
+# cmd: case.sh /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/x2/out/base-20261126T025624Z/attscan-default-picker-preopened.py
+# mfx_repo: default
+rc: 0
+t0: 1795662186.976169340
+t1: 1795662260.043008514

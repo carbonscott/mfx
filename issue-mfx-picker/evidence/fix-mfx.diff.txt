@@ -1,0 +1,30 @@
+# host: sdfiana025
+# date: 2026-11-26T07:22:32Z
+# commit: mfx 387a4c14c24752c39ed4c453de2b59ac655beb95 (fix clone) vs 4beeab1ea557460e1db858ce095f39a4e3f8afca
+# cmd: collect_picker.sh /sdf/scratch/lcls/ds/prj/prjcwang31/scratch/main/sim-issues/agents/h1/mfx-picker/evidence (git -C /sdf/data/lcls/ds/prj/prjcwang31/scratch/main/sim-explore/agents/h4/mfx-fix diff 4beeab1ea557460e1db858ce095f39a4e3f8afca HEAD)
+
+$ git diff 4beeab1ea557460e1db858ce095f39a4e3f8afca HEAD    # in the fix clone the fix run used
+diff --git a/mfx/attenuator_scan.py b/mfx/attenuator_scan.py
+index 944ad8f..3516320 100644
+--- a/mfx/attenuator_scan.py
++++ b/mfx/attenuator_scan.py
+@@ -305,9 +305,6 @@ def attenuator_scan(
+                 add_note=sample_transmissions
+             )
+ 
+-        # Close pulse picker after run
+-        mfx_pulsepicker.close()
+-
+         # Wait before next run
+         if run_idx < runs - 1:
+             logger.info(
+@@ -315,6 +312,9 @@ def attenuator_scan(
+             )
+             sleep(daq_delay)
+ 
++    # Close pulse picker after the last run (as autorun does and the docstring's workflow says)
++    mfx_pulsepicker.close()
++
+     # Final summary
+     logger.info("\n" + "="*60)
+     logger.info("ATTENUATOR SCAN COMPLETE")
